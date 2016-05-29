@@ -1,0 +1,44 @@
+<html>
+<title>TestPage</title>
+
+<head>
+    <head>
+    <link rel="stylesheet" type="text/css" href="../Styles/style.css">
+    
+</head>
+
+<body>
+<p id="chart">
+<script src="../models/Entry.js" > </script>
+<script src="../models/Request.js" > </script> 
+<script src="../models/Response.js" > </script>
+<script src="../models/Director.js" > </script>
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../d3-plugins/sankey/sankey.js"></script>
+<script src="DisplaySankey.js"> </script>
+<script>
+
+
+var entry1 = new Entry(1,"myComponent1", "myMessage1");
+entry1.setSeverity("warning");
+entry1.setTimestamp(Date.now());
+var entry2 = new Entry(2,"myComponent2", "myMessage2");
+entry2.setSeverity("warning");
+entry2.setTimestamp(Date.now());
+var entry3 = new Entry(3,"myComponent3", "myMessage3");
+entry3.setSeverity("warning");
+entry3.setTimestamp(Date.now());
+
+var request = new Request();
+var director = new Director(request);
+
+director.add(entry1)
+director.add(entry2);
+director.add(entry3);
+var modelToDisplay = director.walkthrough();
+var sankey = new DisplaySankey(modelToDisplay);
+sankey.displayModel();
+
+</script>
+</body>
+</html>
